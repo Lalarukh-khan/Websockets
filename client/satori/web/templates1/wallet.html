@@ -1,0 +1,243 @@
+<!-- WALLET -->
+<!-- EXAMPLE REPLACE WITH BETTER TEMPLATE (REQUIRES SECURITY)-->
+
+{% extends "basic.html" %}
+
+{% block content %}
+
+<script>
+  /**
+  We're defining the event on the `body` element,
+  because we know the `body` is not going away.
+  Second argument makes sure the callback only fires when
+  the `click` event happens only on elements marked as `data-editable`
+  */
+  $('body').on('click', '[data-editable]', function(){
+
+    var $el = $(this);
+
+    var $input = $('<input/>').val( $el.text() );
+    $el.replaceWith( $input );
+
+    var save = function(){
+      var $p = $('<p data-editable />').text( $input.val() );
+      $input.replaceWith( $p );
+      /** save to database? */
+    };
+
+    /**
+      We're defining the callback with `one`, because we know that
+      the element will be gone just after that, and we don't want
+      any callbacks leftovers take memory.
+      Next time `p` turns into `input` this single callback
+      will be applied again.
+    */
+    $input.one('blur', save).focus();
+
+  });
+  /**
+    page top floater
+  */
+  $(document).ready(function(){
+     $('.fixed-action-btn').floatingActionButton();
+   });
+</script>
+
+
+  <div class="" id='top_of_page'>
+    <h3>Admin Dashboard</h3>
+  </div>
+
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large blue" href="#top_of_page">
+      <i class="large material-icons">keyboard_arrow_up</i>
+    </a>
+  </div>
+  <nav>
+    <div class="nav-wrapper">
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="{{ url_for('reboot_reports') }}" title='pulls latest reports and restarts container'>Reboot Reports</a></li>
+        <li><a href="{{ url_for('admin_refresh_datasets') }}" title='deletes and gets datasets'>Refresh Datasets</a></li>
+        <li><a href="{{ url_for('validate_alert_files') }}" title='checks on alerts yesterday datasets'>Alert Data Validation</a></li>
+        <li><a href="{{ url_for('admin_test_reports') }}" title='Test Reports'>Test Reports</a></li>
+        <li><a href="{{ url_for('canary') }}" title='Canary check'>Canary</a></li>
+        <li><a href="{{ url_for('ping') }}" title='Ping check'>Ping</a></li>
+      </ul>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#role_management">Role Management</a></li>
+        <li><a href="#user_management">User Managment</a></li>
+        <li><a href="#alerts">Alerts</a></li>
+        <li><a href="#datasets">Datasets</a></li>
+      </ul>
+    </div>
+  </nav>
+  <br/>
+  <br/>
+  <br id='role_management'>
+  <br />
+  <table class="highlight bordered responsive-table card">
+    <thead>
+      <caption><h4>Role Management</h4></caption>
+      <tr>
+        <th width="15%">Roles</th>
+        <th width="60%">Reports</th>
+        <th width="10%">Alerts</th>
+        <th width="15%">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for role_name, allowances in roles.items() %}
+      <tr>
+        <td>{{ role_name }}</td>
+        <td>{{ ', '.join(allowances['reports']) if allowances['reports'] else '' }}</td>
+        <td>{{ ', '.join(allowances['alerts']) if allowances['alerts'] else '' }}</td>
+        <td>
+          <a class="waves-effect waves-light btn" href="{{ url_for('edit_role', name=role_name ) }}" title="Edit Role">
+            <i class="large material-icons">edit</i>
+          </a>
+          <a class="waves-effect waves-light btn" href="{{ url_for('remove_role', name=role_name ) }}" title="Delete Role">
+            <i class="large material-icons">delete</i>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+      <!--<tr>
+        <td><p data-editable>click me</p></td>
+        <td>selector for reports</td>
+        <td>selector for usernames</td>
+      </tr>-->
+      <tr>
+        <td>
+          <form action="" method="post" novalidate>
+            {{ new_role.hidden_tag() }}
+            <p>
+              {{ new_role.role_name.label }}
+              <br>
+              {{ new_role.role_name(size=32) }}
+            </p>
+            {{ new_role.submit(class_="waves-effect waves-light btn") }}
+          </form>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br id='user_management'>
+  <br />
+  <table class="highlight bordered responsive-table card">
+    <thead>
+      <caption><h4>User Management</h4></caption>
+      <tr>
+        <th width="10%">User</th>
+        <th width="20%">Name</th>
+        <th width="30%">Roles</th>
+        <th width="40%">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for username, (user_name, role_names) in users.items() %}
+      <tr>
+        <td>{{ username }}</td>
+        <td>{{ user_name }}</td>
+        <td>{{ ', '.join(role_names) if role_names else '' }}</td>
+        <td>
+          <a class="waves-effect waves-light btn" href="{{ url_for('edit_user', name=username ) }}" title='Edit User Profile and Preferences'>
+            <i class="large material-icons">edit</i>
+          </a>
+          <a class="waves-effect waves-light btn" href="{{ url_for('edit_avatar', name=username ) }}" title='Set Avatar Link'>
+            <i class="large material-icons">face</i>
+          </a>
+          <a class="waves-effect waves-light btn" href="{{ url_for('remove_user', name=username ) }}" title='Remove User'>
+            <i class="large material-icons">delete</i>
+          </a>
+          <a class="waves-effect waves-light btn" href="{{ url_for('impersonate_user', name=username ) }}" title='Impersonate User'>
+            <i class="large material-icons">people</i>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td>
+          <form action="" method="post" novalidate>
+            {{ new_user.hidden_tag() }}
+            <p>
+              {{ new_user.username.label }}
+              <br>
+              {{ new_user.username(size=32) }}
+            </p>
+            {{ new_user.submit(class_="waves-effect waves-light btn") }}
+          </form>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br id='alerts'>
+  <br />
+  <table class="highlight bordered responsive-table card">
+    <thead>
+      <tr>
+        <caption>
+          <h4>Alerts</h4>
+          <a class="waves-effect waves-light btn" href="{{ url_for('trigger_test_alerts') }}">Trigger Test Alerts</a>
+          <a class="waves-effect waves-light btn" href="{{ url_for('trigger_alerts') }}">Trigger Alerts</a>
+          <br /><br />
+        </caption>
+        <th width="30%">Alert</th>
+        <th width="30%">Description</th>
+        <th width="20%">Test Trigger</th>
+        <th width="20%">Trigger</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for alert_name, alert_details in alerts.items() %}
+      <tr>
+        <td>{{alert_details['display_name']}}</td>
+        <td>{{alert_details['description']}}</td>
+        <td>
+          <a class="waves-effect waves-light btn-large" href="{{ url_for('trigger_test_alert', name=alert_name ) }}" title="Test Alert">
+            <i class="large material-icons">play_circle_outline</i>
+          </a>
+        </td>
+        <td>
+          <a class="waves-effect waves-light btn-large" href="{{ url_for('trigger_alert', name=alert_name ) }}" title="Trigger Alert">
+            <i class="large material-icons">play_arrow</i>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+  <br id='datasets'>
+  <br />
+  <table class="highlight bordered responsive-table card">
+    <thead>
+      <tr>
+        <caption><h4>Datasets</h4></caption>
+        <th width="20%">Name</th>
+        <th width="60%">Created</th>
+        <th width="60%">refresh</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for dataset, details in datasets.items() %}
+      <tr>
+        <td>{{ dataset }}</td>
+        <td>{{ details['created'] }}</td>
+        <td>
+          <a class="waves-effect waves-light btn-large" href="{{ url_for('refresh_dataset', dataset_name=dataset) }}" title="Download Dataset">
+            <i class="large material-icons">refresh</i>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

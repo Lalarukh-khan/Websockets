@@ -1,0 +1,36 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="flex">
+    <div class="flex-grow">
+      <h1 class="text-sky-700">Listing Devices</h1>
+    </div>
+    <div class="flex flex-row-reverse">
+      <%= live_patch "New Device", to: Routes.device_index_path(@socket, :new), class: "button-small" %>
+    </div>
+  </section>
+  
+  <%= if @live_action in [:new, :edit] do %>
+    <.modal return_to={Routes.device_index_path(@socket, :index)}>
+      <.live_component
+        module={SatoriWeb.DeviceLive.FormComponent}
+        id={@device.id || :new}
+        title={@page_title}
+        action={@live_action}
+        device={@device}
+        return_to={Routes.device_index_path(@socket, :index)}
+      />
+    </.modal>
+  <% end %>
+
+  <ul role="list"  class="mt-6 space-y-3">
+    <%= for device <- @devices do %>
+      <.live_component
+      module={SatoriWeb.DeviceLive.Components.DeviceComponent}
+      device={device}
+      id={device.id}
+      live_action={@live_action}
+      page_title={@page_title}
+      return_to={Routes.device_index_path(@socket, :index)}
+      />
+      <% end %>
+  </ul>
+</div>

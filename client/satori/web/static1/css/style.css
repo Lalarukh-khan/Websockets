@@ -1,0 +1,26 @@
+.bk-btn-primary {
+    color: #406281!important;
+    background-color: transparent!important;
+    border-color: transparent!important;
+    border-radius: 2px!important;
+}
+
+.bk-btn-primary:hover {
+    color: #192733!important;
+    background-color: transparent!important;
+    border-color: transparent!important;
+    border-radius: 2px!important;
+}
+
+.bk-btn-default {
+   border-radius: 2px!important;
+   margin-right: 10px!important;
+}
+
+.bk-input {
+   border-radius: 2px!important;
+}
+
+.bk-tab {
+   border-radius: 2px!important;
+}

@@ -1,0 +1,53 @@
+<div class="form-container">
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <img class="form-icon" src="/images/satori.svg" alt="Satori Logo">
+      <h2 class="account-title">
+        Reset your password
+      </h2>
+    </div>
+
+    <.form let={f} for={@changeset} action={Routes.user_reset_password_path(@conn, :update, @token)} class="mt-8 space-y-6">
+      <%= if @changeset.action do %>
+        <div class="form-error">
+          <p>Something went wrong. Please check the errors below and try again.</p>
+        </div>
+      <% end %>
+
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <%= label f, :password, "New password", class: "sr-only" %>
+          <%= password_input f, :password, required: true, class: "form-field form-field-top", placeholder: "New password" %>
+          <%= error_tag f, :password %>
+        </div>
+
+        <div>
+          <%= label f, :password_confirmation, "Confirm new password", class: "sr-only" %>
+          <%= password_input f, :password_confirmation, required: true, class: "form-field form-field-bottom", placeholder: "Confirm new password" %>
+          <%= error_tag f, :password_confirmation %>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <div class="text-sm">
+          <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "hyperlink" %>
+        </div>
+
+        <div class="text-sm">
+          <%= link "Sign in", to: Routes.user_session_path(@conn, :new), class: "hyperlink" %>
+        </div>
+      </div>
+
+      <div>
+        <%= submit class: "group form-button" do %>
+          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <svg class="form-button-image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+            </svg>
+          </span>
+          Reset password
+        <% end %>
+      </div>
+    </.form>
+  </div>
+</div>

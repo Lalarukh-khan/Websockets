@@ -1,0 +1,631 @@
+{% extends "basic.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-header p-3 pt-2">
+        <div class="icon icon-lg icon-shape bg-gradient-less-drastic-reverse shadow-drastic text-center border-radius-xl mt-n4 position-absolute">
+          <i class="material-icons opacity-10">wallet</i>
+        </div>
+        <div class="text-end pt-1">
+          <h4 class="mb-0">Wallet</h4>
+        </div>
+        <div class="text-center pt-1">
+          <h4 class="mb-0">{{ wallet.showBalance() }}</h4>
+          <p class="text-sm mb-0 text-capitalize">SATS</p>
+        </div>
+      </div>
+      <div class="card-footer p-1">
+      </div>
+    </div>
+  </div>
+  <!-- we are commenting these out because we're just going to have two stats to start with, we'll add more as we learn to care about them 
+  
+  <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-header p-3 pt-2">
+        <div class="icon icon-lg icon-shape bg-gradient-primary-reverse1 shadow-drastic text-center border-radius-xl mt-n4 position-absolute">
+          <i class="material-icons opacity-10">water</i>
+        </div>
+        <div class="text-end pt-1">
+          <h4 class="mb-0">Predictions</h4>
+        </div>
+        <div class="text-center pt-1">
+          <h4 class="mb-0">53</h4>
+          <p class="text-sm mb-0 text-capitalize">Streams</p>
+        </div>
+      </div>
+      <div class="card-footer p-1">
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+    <div class="card">
+      <div class="card-header p-3 pt-2">
+        <div class="icon icon-lg icon-shape bg-gradient-primary-reverse2 shadow-drastic text-center border-radius-xl mt-n4 position-absolute">
+          <i class="material-icons opacity-10">person</i>
+        </div>
+        <div class="text-end pt-1">
+          <h4 class="mb-0">Subscribers</h4>
+        </div>
+        <div class="text-center pt-1">
+          <h4 class="mb-0">53</h4>
+          <p class="text-sm mb-0 text-capitalize">devices</p>
+        </div>
+      </div>
+      <div class="card-footer p-1">
+      </div>
+    </div>
+  </div>
+  -->
+  <div class="col-xl-6 col-sm-6">
+    <div class="card">
+      <div class="card-header p-3 pt-2">
+        <div class="icon icon-lg icon-shape bg-gradient-less-drastic-reverse shadow-drastic text-center border-radius-xl mt-n4 position-absolute">
+          <i class="material-icons opacity-10">golf_course</i>
+        </div>
+        <div class="text-end pt-1">
+          <h4 class="mb-0">Rank</h4>
+        </div>
+        <div class="text-center pt-1">
+          <h4 class="mb-0">53</h4>
+          <p class="text-sm mb-0 ">percentile</p>
+        </div>
+      </div>
+      <div class="card-footer p-1">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-lg-4 col-md-6 mt-4 mb-4">
+    <div class="card z-index-2 ">
+      <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+        <div class="bg-gradient-lightgrey shadow-drastic border-radius-lg py-3 pe-1">
+          <div class="chart">
+            <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <h6 class="mb-0" style='float:left;'>Win Rate</h6>
+        <p class="mb-0 text-sm" style='float:right;'><i class="material-icons text-sm my-auto me-1">schedule</i>prior 7 days</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-6 mt-4 mb-4">
+    <div class="card z-index-2  ">
+      <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+        <div class="bg-gradient-lightgrey shadow-drastic border-radius-lg py-3 pe-1">
+          <div class="chart">
+            <canvas id="chart-line" class="chart-canvas" height="170"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <h6 class="mb-0" style='float:left;'>Accuracy</h6>
+        <p class="mb-0 text-sm" style='float:right;'><i class="material-icons text-sm my-auto me-1">schedule</i>entire history</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 mt-4 mb-3">
+    <div class="card z-index-2 ">
+      <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+        <div class="bg-gradient-lightgrey shadow-drastic border-radius-lg py-3 pe-1">
+          <div class="chart">
+            <canvas id="chart-line-tasks" class="chart-canvas" height="170"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <h6 class="mb-0" style='float:left;'>Observations</h6>
+        <p class="mb-0 text-sm" style='float:right;'><i class="material-icons text-sm my-auto me-1">schedule</i>up to 100 most recent observations</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb-4">
+  <div class="col-lg-12 col-md-12 mb-md-0 mb-4">
+    <div class="card">
+      <div class="card-header pb-0">
+        <div class="row">
+          <div class="col-lg-6 col-7">
+            <h6>Predictions</h6>
+            <p class="text-sm mb-0">
+              Streams published by this Satori Node 
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card-body px-0 pb-2">
+        <div class="table-responsive" style="padding-left:1rem;padding-right:1rem;">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Source</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Stream</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Target</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Latest</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prediction</th>
+              </tr>
+            </thead>
+            <tbody id="updating_table">
+              {% for streamOverview in streamsOverview %}
+              <tr class='yellow-hover' onmouseover="setData(chartOne,{{ streamOverview['predictions'] }});setData(chartTwo,[.5,.7,.8,.85,.87,.9,.91,.92,.93]);setData(chartThree,[4,3,2,1]);">
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">{{ streamOverview['source'] }}</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">{{ streamOverview['stream'] }}</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">{{ streamOverview['target'] }}</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">{{ streamOverview['value'] }}</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">{{ streamOverview['prediction'] }}</h6>
+                  </div>
+                </td>                                                                
+                <!-- example
+                <td>{{ streamOverview['accuracy'] }}</td>
+              <tr>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">Streamr</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">Gold-4hr</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">Close</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">2196</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">2192</h6>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">Satori</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">BTC-10min-pred</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">High</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">36912</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">47681</h6>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">Streamr</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">Montana-Weather-Daily</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">Average Temperature</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">68</h6>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex px-3 py-1">
+                    <h6 class="mb-0 text-sm">71</h6>
+                  </div>
+                </td>
+                -->
+              </tr> 
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p id="learn_output"></p>
+<p id="learn_output2"></p>
+<p id="learn_output3"></p>
+<script src="{{ url_for('static', filename='js/plugins/chartjs.min.js') }}"></script>
+<script>
+  function addData(chart, label, data) {
+    chart.data.labels.push(label);
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+    });
+    chart.update();
+  }
+  function addDataChartThree(label, data, prediction) {
+    chartThree.data.labels.push(label);
+    chartThree.data.datasets[0].data.push(data);
+    chartThree.data.datasets[1].data.push(prediction);
+    chartThree.update();
+  }
+  function addDataChartOne() {
+    addData(chartOne, '', [1]);
+  }
+
+  function removeData(chart) {
+    chart.data.labels.pop();
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+    });
+    chart.update();
+  }
+  function removeAllData(chart) {
+    chart.data.labels = [];
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data = [];
+    });
+    chart.update();
+  }
+  function removeDataChartOne() {
+    removeAllData(chartOne);
+  }
+  function setData(chart, data) {
+    removeAllData(chart);
+    let labels = [];
+    for (let x in data) {
+      labels.push('');
+      if (labels.length == data.length){
+        addData(chart, 'now', data[x]);
+      } else {
+        addData(chart, '', data[x]);
+      }
+    }
+  }
+  function setDataChartThree(data, prediction) {
+    removeAllData(chartThree);
+    let labels = [];
+    for (let x in data) {
+      labels.push('');
+      if (labels.length == data.length){
+        addDataChartThree('now', data[x], null);
+      } else {
+        addDataChartThree('', data[x], null);
+      }
+    }
+    console.log(prediction)
+    addDataChartThree('next', null, prediction);
+  }
+  
+  var ctx = document.getElementById("chart-bars").getContext("2d");
+  var chartOne = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["", "", "", "", "", "", "Today"],
+      datasets: [{
+        label: "",
+        tension: 0.4,
+        borderWidth: 0,
+        borderRadius: 4,
+        borderSkipped: false,
+        backgroundColor: "rgba(60, 60, 60, .8)",
+        data: [50, 20, 10, 22, 50, 10, 40],
+        maxBarThickness: 4
+      }, ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false,
+        }
+      },
+      interaction: {
+        intersect: false,
+        mode: 'index',
+      },
+      scales: {
+        y: {
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [1, 0],
+            color: 'rgba(180, 180, 180, .2)'
+          },
+          ticks: {
+            suggestedMin: 0,
+            suggestedMax: 500,
+            beginAtZero: true,
+            padding: 10,
+            font: {
+              size: 14,
+              weight: 300,
+              style: 'normal',
+              lineHeight: 2
+            },
+            color: "#98999a"
+          },
+        },
+        x: {
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [5, 5],
+            color: 'rgba(45, 45, 45, .0)'
+          },
+          ticks: {
+            display: true,
+            color: '#98999a',
+            padding: 10,
+            font: {
+              size: 14,
+              weight: 300,
+              style: 'normal',
+              lineHeight: 2
+            },
+          }
+        },
+      },
+    },
+  });
+
+
+  var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+  var chartTwo = new Chart(ctx2, {
+    type: "line",
+    data: {
+      labels: ["", "", "", "", "", "", "", "", "Now"],
+      datasets: [{
+        label: "",
+        tension: .2,
+        borderWidth: 0,
+        pointRadius: 0,
+        pointBackgroundColor: "rgba(60, 60, 60, .8)",
+        pointBorderColor: "transparent",
+        borderColor: "rgba(60, 60, 60, .8)",
+        borderWidth: 3,
+        backgroundColor: "transparent",
+        fill: true,
+        data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false,
+        }
+      },
+      interaction: {
+        intersect: false,
+        mode: 'index',
+      },
+      scales: {
+        y: {
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [1, 0],
+            color: 'rgba(180, 180, 180, .2)'
+          },
+          ticks: {
+            display: true,
+            color: '#98999a',
+            padding: 10,
+            font: {
+              size: 14,
+              weight: 300,
+              style: 'normal',
+              lineHeight: 2
+            },
+          }
+        },
+        x: {
+          grid: {
+            drawBorder: false,
+            display: false,
+            drawOnChartArea: false,
+            drawTicks: false,
+            borderDash: [5, 5]
+          },
+          ticks: {
+            display: true,
+            color: '#98999a',
+            padding: 10,
+            font: {
+              size: 14,
+              weight: 300,
+              style: 'normal',
+              lineHeight: 2
+            },
+          }
+        },
+      },
+    },
+  });
+
+  var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
+
+  var chartThree = new Chart(ctx3, {
+    type: "line",
+    data: {
+      labels: ["", "", "", "", "", "", "", "", "", "Next"],
+      datasets: [{
+        label: "",
+        tension: .2,
+        borderWidth: 0,
+        pointRadius: 0,
+        pointBackgroundColor: "rgba(60, 60, 60, .8)",
+        pointBorderColor: "transparent",
+        borderColor: "rgba(60, 60, 60, .8)",
+        borderWidth: 3,
+        backgroundColor: "transparent",
+        fill: true,
+        data: [50, 40, 300, 220, 500, 250, 400, 230, 500, null],
+      }, {
+        label: "",
+        tension: .2,
+        borderWidth: 0,
+        pointRadius: 3,
+        pointBackgroundColor: "rgba(246, 176, 66, .8)",
+        pointBorderColor: "rgba(246, 176, 66, .8)",
+        borderColor: "rgba(246, 176, 66, .8)",
+        borderWidth: 0,
+        backgroundColor: "rgba(246, 176, 66, .8)",
+        fill: true,
+        data: [null, null, null, null, null, null, null, null, null, 450],
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false,
+        }
+      },
+      interaction: {
+        intersect: false,
+        mode: 'index',
+      },
+      scales: {
+        y: {
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [1, 0],
+            color: 'rgba(180, 180, 180, .2)'
+          },
+          ticks: {
+            display: true,
+            padding: 10,
+            color: '#98999a',
+            font: {
+              size: 14,
+              weight: 300,
+              style: 'normal',
+              lineHeight: 2
+            },
+          }
+        },
+        x: {
+          grid: {
+            drawBorder: false,
+            display: false,
+            drawOnChartArea: false,
+            drawTicks: false,
+            borderDash: [5, 5]
+          },
+          ticks: {
+            display: true,
+            color: '#98999a',
+            padding: 10,
+            font: {
+              size: 14,
+              weight: 300,
+              style: 'normal',
+              lineHeight: 2
+            },
+          }
+        },
+      },
+    },
+  });
+  var table_output = document.getElementById("updating_table");
+  var table_update = new EventSource("/model-updates");
+  table_update.onmessage = function (e) {
+    if (e.data == "close") {
+      table_update.close();
+    } else {
+      const streamOverview = JSON.parse(e.data);
+      var rows = [];
+      for (var i=0; i<streamOverview.length; i++) {
+        rows.push(`
+        <tr class='yellow-hover' onmouseenter="setData(chartOne,[` + streamOverview[i]["predictions"] + `]);setData(chartTwo,[.5,.7,.8,.85,.87,.9,.91,.92,.93]);setDataChartThree([` + streamOverview[i]["values"] + `], ` + streamOverview[i]["prediction"] + `);">
+          <td>
+            <div class="d-flex px-3 py-1">
+              <h6 class="mb-0 text-sm">` + streamOverview[i]["source"] + `</h6>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex px-3 py-1">
+              <h6 class="mb-0 text-sm">` + streamOverview[i]["stream"] + `</h6>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex px-3 py-1">
+              <h6 class="mb-0 text-sm">` + streamOverview[i]["target"] + `</h6>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex px-3 py-1">
+              <h6 class="mb-0 text-sm">` + streamOverview[i]["value"] + `</h6>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex px-3 py-1">
+              <h6 class="mb-0 text-sm">` + streamOverview[i]["prediction"] + `</h6>
+            </div>
+          </td>                                                                
+        </tr>`);
+      }
+      table_output.innerHTML = rows.join("");
+    }
+  };
+</script>
+
+{% endblock %}
+
+
+
+

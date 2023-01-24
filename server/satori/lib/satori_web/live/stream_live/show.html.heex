@@ -1,0 +1,51 @@
+<h1>Show Stream</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.stream_show_path(@socket, :show, @stream)}>
+    <.live_component
+      module={SatoriWeb.StreamLive.FormComponent}
+      id={@stream.id}
+      title={@page_title}
+      action={@live_action}
+      stream={@stream}
+      return_to={Routes.stream_show_path(@socket, :show, @stream)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Wallet:</strong>
+    <%= @stream.wallet_id %>
+  </li>
+
+  <li>
+    <strong>Source name:</strong>
+    <%= @stream.source_name %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @stream.name %>
+  </li>
+
+  <li>
+    <strong>Cadence:</strong>
+    <%= @stream.cadence %>
+  </li>
+
+  <li>
+    <strong>Sanctioned:</strong>
+    <%= @stream.sanctioned %>
+  </li>
+
+  <li>
+    <strong>Preidction of:</strong>
+    <%= @stream.stream_id %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.stream_show_path(@socket, :edit, @stream), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.stream_index_path(@socket, :index) %></span>

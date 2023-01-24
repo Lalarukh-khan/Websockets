@@ -1,0 +1,41 @@
+<h1>Show Observation</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.observation_show_path(@socket, :show, @observation)}>
+    <.live_component
+      module={SatoriWeb.ObservationLive.FormComponent}
+      id={@observation.id}
+      title={@page_title}
+      action={@live_action}
+      observation={@observation}
+      return_to={Routes.observation_show_path(@socket, :show, @observation)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Stream:</strong>
+    <%= @observation.stream_id %>
+  </li>
+
+  <li>
+    <strong>Wallet:</strong>
+    <%= @observation.wallet_id %>
+  </li>
+
+  <li>
+    <strong>Target:</strong>
+    <%= @observation.target_id %>
+  </li>
+
+  <li>
+    <strong>Value:</strong>
+    <%= @observation.value %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.observation_show_path(@socket, :edit, @observation), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.observation_index_path(@socket, :index) %></span>

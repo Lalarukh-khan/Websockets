@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+  <link rel="icon" href="./assets/site/favicon512.ico">
+  <link href="./assets/style.css" rel="stylesheet">
+  <link href="./assets/timeline/style.css" rel="stylesheet">
+</head>
+<body>
+
+<center>
+  <h1 style='font-size: 200px; margin-top: 0px; margin-bottom: 0px;' class="logoFont resize-on-small-and-down" onclick="showContent0()">Sat<img src="./assets/site/enso.png" width="100" height="100">ri</h1>
+  <button id='button1' class="textFontButton" onclick="showContent1()">Vision</button>
+  <button id='button2' class="textFontButton" onclick="showContent2()">The Way</button>
+  <button id='button3' class="textFontButton" onclick="showContent3()">Join</button>
+  <div style='margin-bottom: 50px;'></div>
+  <div id="demo">
+
+  </div>
+</center>
+
+
+<script>
+    let b1 = document.getElementById("button1");
+    let b2 = document.getElementById("button2");
+    let b3 = document.getElementById("button3");
+
+    // This handler will be executed only once when the cursor
+    // moves over the unordered list
+    b1.addEventListener("mouseenter", function( event ) {
+    // highlight the mouseenter target
+    event.target.style.color = "#2274A5";
+    showContent1();
+    //event.target.style.decoration = 'underline';
+    // reset the color after a short delay
+    //setTimeout(function() {
+    //  event.target.style.color = "";
+    //}, 500);
+    }, false);
+
+    // This handler will be executed every time the cursor
+    // is moved over a different list item
+    b1.addEventListener("mouseout", function( event ) {
+    // highlight the mouseover target
+    event.target.style.color = "black";
+
+    }, false);
+
+    b2.addEventListener("mouseenter", function( event ) {
+    event.target.style.color = "#2274A5";
+    showContent2();
+    }, false);
+    b2.addEventListener("mouseout", function( event ) {
+    event.target.style.color = "black";
+    }, false);
+
+    b3.addEventListener("mouseenter", function( event ) {
+    event.target.style.color = "#2274A5";
+    showContent3();
+    }, false);
+    b3.addEventListener("mouseout", function( event ) {
+    event.target.style.color = "black";
+    }, false);
+</script>
+
+
+
+  <template id='templateSorry'>
+      <div class="fade-in">
+        <p class="textFont">Apologies. I am not quite live yet.</p>
+        <p class="textFont">Help me realize my potential.</p>
+        <button class="textFontButton"><a href="https://github.com/lastmeta/Satori">Get Involved</a></button>
+      </div>
+  </template>
+
+  <script>
+    function showContentSorry() {
+      var temp = document.getElementById("templateSorry");
+      var clon = temp.content.cloneNode(true);
+      document.getElementById("demo").innerHTML = temp.innerHTML;
+    }
+  </script>
+
+
+
+
+  <template id='template0'>
+  <div class="fade-in">
+    <form action="/action_page.php" onsubmit="showContentSorry()">
+      <input type="text" id="search" value="" placeholder="what would you like to know?" class="textFont" style='margin-top:100px; width: 500px;'>
+    </form>
+  </div>
+</template>
+
+<script>
+  function showContent0() {
+    var temp = document.getElementById("template0");
+    var clon = temp.content.cloneNode(true);
+    document.getElementById("demo").innerHTML = temp.innerHTML;
+  }
+  showContent0()
+</script>
+
+
+
+
+<template id='template1'>
+  <div class="fade-in">
+    <p class="textFont">The Satori Network predicts the future of everything.</p>
+    <p class="textFont">Anyone can query the Satori Network to access those predictions and glimps the future.</p>
+    <br/>
+    <button class="textFontButton">
+      <a href="https://docs.google.com/document/d/e/2PACX-1vSn2hOYs2QtKBsGAovbZKyeGMdGIe3MX6BZaLvvK2ZVaml2W9_XQeiUQQvtL9g9ycfunm1rC3vscVNr/pub" target="_blank">
+        Litepaper
+      </a>    
+    </button>
+    <br/>
+    <br/>
+    <iframe
+      width="800" height="7600"
+      src="https://docs.google.com/document/d/e/2PACX-1vSn2hOYs2QtKBsGAovbZKyeGMdGIe3MX6BZaLvvK2ZVaml2W9_XQeiUQQvtL9g9ycfunm1rC3vscVNr/pub?embedded=true"
+      ></iframe>
+  </div>
+</template>
+
+<script>
+  function showContent1() {
+    var temp = document.getElementById("template1");
+    var clon = temp.content.cloneNode(true);
+    document.getElementById("demo").innerHTML = temp.innerHTML;
+  }
+</script>
+
+<template id='template2'>
+  <div class="fade-in">
+    <p class="textFont">Satori is a network of nodes, all working together to predict the future.</p>
+    <p class="textFont">Anyone can publish a data feed to the network and the nodes will predict the future of that data feed.</p>
+    <p class="textFont">Each node tries to make better and better predictions of the data feeds assigned to it.</p>
+    <!--
+      <p style="color:white;">✔</p>
+    -->
+    <br/>
+    <center>
+    <button class="textFontButton">Roadmap</button>
+    <br/>
+    <br/>
+    <div class="phase">
+      <p class="textFont phase-border">Phase 1</p>
+    </div>
+    <div class="container">
+      <div class="timeline-item" date-is='November 2021'>
+        <h2 class="textFontButton">Satori Network Conceptualized as the Simplest Approach to Distributed AI</h2>
+        <p class="textFont">
+          A network of computing nodes all working together to predict the future of everything, and making those predictions freely available.
+        </p>
+      </div>
+      <div class="timeline-item" date-is='December 2021'>
+        <h2 class="textFontButton">Proof of Concept Engine Produced</h2>
+          <p class="textFont">
+            The core of a Satori Node is an automated all-purpose prediction engine.
+        </p>
+      </div>
+      <div class="timeline-item" date-is='January 2022'>
+        <h2 class="textFontButton">Modular Satori Node Software Designed</h2>
+        <p class="textFont">
+          Each node contains a UI, a Streamr light client, a wallet, and a generalized predictive engine.
+        </p>
+      </div>
+      <div class="timeline-item" date-is='February 2022'>
+        <h2 class="textFontButton">Distributed Publish-subscribe Solution Found: Streamr</h2>
+          <p class="textFont">
+          Satori Nodes need to communicate with each other and obtain real world data, they will do so using the Streamr network.
+        </p>
+      </div>
+      <div class="timeline-item" date-is='March 2022'>
+        <h2 class="textFontButton">Satori Node Software Framework Produced</h2>
+        <p class="textFont">
+          Satori Node framework is multi-threaded, responsive, and modular so that it can react to new incoming data immediately.
+        </p>
+      </div>
+      <div class="timeline-item" date-is='April 2022'>
+        <h2 class="textFontButton">Satori Website Created</h2>
+        <p class="textFont">
+          Satori needs a landing page, social media presence, and discord server in order to interface with the world.
+        </p>
+      </div>
+      <div class="timeline-item" date-is='May 2022'>
+        <h2 class="textFontButton">Node UI Created</h2>
+        <p class="textFont">
+          Satori Node needs a UI to show streams being predicted, wallet and earnings, and allow the user to configure how the node runs.
+        </p>
+      </div>
+      <div class="timeline-item" date-is='By end of Q3 2022'>
+        <h2 class="textFontButton">Publish-subscribe Integration</h2>
+        <p class="textFont">
+          The Streamr light client must be integrated in order to provide the engine with the data it needs.
+        </p>
+        <h2 class="textFontButton">Prediction Engine Optimized</h2>
+          <p class="textFont">
+            The prediction engine needs to support all forms of data and come prebuilt with advanced automated machine learning capabilities.
+          </p>
+      </div>
+      <div class="timeline-item" date-is='By end of Q4 2022'>
+        <h2 class="textFontButton">Wallet Integration</h2>
+          <p class="textFont">
+            Satori needs the use of distributed consensus for incentive structures as well as for purposes of coordiation such as community voting, competition, and bounties. A platform needs to be chosen, smart contracts written and communication with the DLT must be represented in the node in the form of a wallet.
+          </p>
+      </div>
+      <div class="timeline-item" date-is='early 2023'>
+        <h2 class="textFontButton">Satori Launch</h2>
+        <p class="textFont">
+          Stress test during a beta launch make any necessary modifications and Launch the Satori Network.
+        </p>
+      </div>
+    </div>
+        <div class="phase">
+      <p class="textFont phase-border">Phase 2</p>
+    </div>
+    <div class="container">
+      <div class="timeline-item" date-is='2023-2024'>
+        <h2 class="textFontButton">Develop Market Platform</h2>
+        <p class="textFont">
+          The market platform will bring buyers and sellers of future forecasting together. This requires building out the rest of the Blockchain protocol to support market transaction for future forecasting.
+        </p>
+      </div>
+      <div class="timeline-item" date-is='2023-2024'>
+        <h2 class="textFontButton">Scale</h2>
+        <p class="textFont">
+          The network to as many nodes as possible to ensure the most reliable and robust predictions of the future.
+        </p>
+      </div>
+    </div>
+        <div class="phase">
+      <p class="textFont phase-border">Phase 3</p>
+    </div>
+    <div class="container">
+      <div class="timeline-item" date-is='2024-2026'>
+        <h2 class="textFontButton">Fully Functional DAO</h2>
+        <p class="textFont">
+          Remove all centralizing training wheels of Satori.
+        </p>
+      </div>
+    </div>
+  </center>
+  </div>
+</template>
+
+<script>
+  function showContent2() {
+    var temp = document.getElementById("template2");
+    var clon = temp.content.cloneNode(true);
+    document.getElementById("demo").innerHTML = temp.innerHTML;
+  }
+</script>
+
+<template id='template3'>
+<div class="fade-in">
+  <!--<img  class="textFont"><p>screenshot</p>-->
+  <p style='margin-top:50px;' class="textFont">Nodes are automated and help the network know the future of everything.</p>
+  <p style='margin-bottom: 50px;' class="textFont">Anyone can run a node.</p>
+  <!--<button class="textFontButton">Download</button>-->
+    <button class="textFontButton"><a href="https://github.com/lastmeta/Satori">Help us Create</a></button>
+    <button class="textFontButton"><a href="https://igg.me/at/satorinet">Make a Donation</a></button>
+    <p style='margin-top:50px;margin-bottom: 50px;' class="textFont">Join the Conversation</p>
+    <button class="textFontButton"><a href="https://twitter.com/Satorinetio">Twitter</a></button>
+    <button class="textFontButton"><a href="https://www.reddit.com/r/SatoriNetwork/">Reddit</a></button>
+    <button class="textFontButton"><a href="https://discord.gg/va6FK77R3F">Discord</a></button>
+
+  <br />
+  <img src="./assets/site/nodeui2.png" style='margin-top:50px;' height=850 width=1404 title='Node software' class="resize-on-med-and-down">
+    <center><i><p class="textFont">Satori Node software user interface</p></i></center>
+  </div>
+</template>
+
+<script>
+  function showContent3() {
+    var temp = document.getElementById("template3");
+    var clon = temp.content.cloneNode(true);
+    document.getElementById("demo").innerHTML = temp.innerHTML;
+  }
+</script>
+
+
+
+
+</body>
+</html>

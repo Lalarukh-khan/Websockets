@@ -1,0 +1,40 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="device-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :name %>
+    <%= text_input f, :name %>
+    <%= error_tag f, :name %>
+  
+    <%= label f, :cpu %>
+    <%= text_input f, :cpu %>
+    <%= error_tag f, :cpu %>
+  
+    <%= label f, :disk %>
+    <%= number_input f, :disk %>
+    <%= error_tag f, :disk %>
+  
+    <%= label f, :bandwidth %>
+    <%= text_input f, :bandwidth %>
+    <%= error_tag f, :bandwidth %>
+  
+    <%= label f, :ram %>
+    <%= number_input f, :ram %>
+    <%= error_tag f, :ram %>
+  
+    <%= label f, :wallet_id %>
+    <%= number_input f, :wallet_id %>
+    <%= error_tag f, :wallet_id %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

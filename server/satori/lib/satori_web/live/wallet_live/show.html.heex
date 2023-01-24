@@ -1,0 +1,36 @@
+<h1>Show Wallet</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.wallet_show_path(@socket, :show, @wallet)}>
+    <.live_component
+      module={SatoriWeb.WalletLive.FormComponent}
+      id={@wallet.id}
+      title={@page_title}
+      action={@live_action}
+      wallet={@wallet}
+      return_to={Routes.wallet_show_path(@socket, :show, @wallet)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>User:</strong>
+    <%= @wallet.user_id %>
+  </li>
+
+  <li>
+    <strong>Address:</strong>
+    <%= @wallet.address %>
+  </li>
+
+  <li>
+    <strong>Script hash:</strong>
+    <%= @wallet.public_key %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.wallet_show_path(@socket, :edit, @wallet), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.wallet_index_path(@socket, :index) %></span>

@@ -1,0 +1,118 @@
+<!-- SETUP WALLET AND SECURITY -->
+<!-- EXAMPLE REPLACE WITH BETTER TEMPLATE -->
+
+{% extends "basic.html" %}
+
+{% block content %}
+
+  <div class="">
+    <h3>Admin Dashboard</h3>
+  </div>
+  <br />
+  <br />
+  <center><h4>Edit User Profile</h4></center>
+  <form action="" method="post" novalidate>
+    {{ edit_user.hidden_tag() }}
+    <p>
+      {{ edit_user.username.label }}<br>
+      {{ edit_user.username(size=32) }}
+    </p>
+    <p>
+      {{ edit_user.email.label }}<br>
+      {{ edit_user.email(size=32) }}
+    </p>
+    <p>
+      {{ edit_user.first.label }}<br>
+      {{ edit_user.first(size=32) }}
+    </p>
+    <p>
+      {{ edit_user.last.label }}<br>
+      {{ edit_user.last(size=32) }}
+    </p>
+    <p>
+      {{ edit_user.middle.label }}<br>
+      {{ edit_user.middle(size=32) }}
+    </p>
+    <p>
+      {{ edit_user.title.label }}<br>
+      {{ edit_user.title(size=32) }}
+    </p>
+    <p>
+      {{ edit_user.roles.label }}<br>
+      {{ edit_user.roles(rows=10, multiple=True) }}
+    </p>
+    {{ edit_user.submit() }}
+  </form>
+
+  <div class="">
+    <h3>Edit User Preferences</h3>
+  </div>
+  <br />
+  <br />
+  <center><h4>Edit Preferences</h4></center>
+  <form action="" method="post" novalidate>
+    {{ edit_preference.hidden_tag() }}
+    <h5>System Preferences</h5>
+    <p>
+      <span>
+      {{ edit_preference.show_avatar() }}
+      {{ edit_preference.show_avatar.label }}</span><br>
+    </p>
+    <h5>Report Preferences</h5>
+    <p>
+      <span>
+      {{ edit_preference.populate_params() }}
+      {{ edit_preference.populate_params.label }}</span><br>
+    </p>
+    <h5 style="display: none;">Download Preferences</h5>
+    <p style="display: none;">
+      {{ edit_preference.download_as.label }}<br>
+      {{ edit_preference.download_as(rows=5, multiple=False) }}
+    </p>
+    <h5>Notification Preferences</h5>
+    <p>
+      <span>
+      {{ edit_preference.email_notification() }}
+      {{ edit_preference.email_notification.label }}</span><br>
+    </p>
+    <h5>Alert Preferences</h5>
+    <p>
+      <span>
+      {{ edit_preference.alert_by_email() }}
+      {{ edit_preference.alert_by_email.label }}</span><br>
+    </p>
+    <p>
+      <span>
+      {{ edit_preference.alert_by_notification() }}
+      {{ edit_preference.alert_by_notification.label }}</span><br>
+    </p>
+    <!-- hidden from user, uncomment when implemented:
+    see also def edit_preference
+    <p>
+      {{ edit_preference.head_font.label }}<br>
+      {{ edit_preference.head_font(size=32) }}
+    </p>
+    <p>
+      {{ edit_preference.body_font.label }}<br>
+      {{ edit_preference.body_font(size=32) }}
+    </p>
+    <p>
+      <span>
+      {{ edit_preference.include_title_page() }}
+      {{ edit_preference.include_title_page.label }}</span><br>
+    </p>
+    <p>
+      <span>
+      {{ edit_preference.include_subtotals() }}
+      {{ edit_preference.include_subtotals.label }}</span><br>
+    </p>
+    <p>
+      <span>
+      {{ edit_preference.include_grand_totals() }}
+      {{ edit_preference.include_grand_totals.label }}</span><br>
+    </p>
+    -->
+    {{ edit_preference.submit() }}
+  </form>
+
+{% endblock %}

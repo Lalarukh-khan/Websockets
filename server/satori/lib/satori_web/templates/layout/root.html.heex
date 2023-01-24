@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="csrf-token" content={csrf_token_value()}>
+    <%= live_title_tag assigns[:page_title] || "Satori", suffix: " · Phoenix Framework" %>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+  </head>
+  <body>
+    <header>
+      <%= render "_user_menu.html", assigns %>
+    </header>
+
+    <%= if @conn.request_path == "/" do %>
+      <%= @inner_content %>
+    <% else %>
+      <div class="mt-16 container mx-auto px-4 sm:px-6 lg:px-8">
+        <%= @inner_content %>
+      </div>
+    <% end %>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+#HandsOnTable_div,
+#HandsOnTable_div::before,
+#HandsOnTable_div::after {
+  all: initial;
+}
+#HandsOnTable_div * {
+  /*all: unset;  allowing inheritance within #mydiv */
+  /*@import url("https://cdn.jsdelivr.net/npm/handsontable@latest/dist/handsontable.full.min.css");*/
+  @import url('handsontable.full.min.css');
+}
+
+

@@ -1,0 +1,26 @@
+<h1>Show Target</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.target_show_path(@socket, :show, @target)}>
+    <.live_component
+      module={SatoriWeb.TargetLive.FormComponent}
+      id={@target.id}
+      title={@page_title}
+      action={@live_action}
+      target={@target}
+      return_to={Routes.target_show_path(@socket, :show, @target)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @target.name %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.target_show_path(@socket, :edit, @target), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.target_index_path(@socket, :index) %></span>

@@ -1,0 +1,92 @@
+/*================================================================================
+	Item Name: Materialize - Material Design Admin Template
+	Version: 4.0
+	Author: PIXINVENT
+	Author URL: https://themeforest.net/user/pixinvent/portfolio
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN CSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+.gradient-45deg-xiketic-purple {
+  background: #10051D;
+  background: -webkit-linear-gradient(45deg, #10051D 15%, #533549 85%);
+  background: linear-gradient(45deg, #10051D 10%, #533549 90%);
+}
+.gradient-45deg-xiketic-purple.gradient-shadow {
+  box-shadow: 0 6px 20px 0 rgba(83, 53, 73, 0.5);
+}
+
+.gradient-45deg-xiketic-orange {
+  background: #10051D;
+  background: -webkit-linear-gradient(45deg, #10051D 15%, #F6B042 85%);
+  background: linear-gradient(45deg, #10051D 10%, #F6B042 90%);
+}
+.gradient-45deg-xiketic-orange.gradient-shadow {
+  box-shadow: 0 6px 20px 0 rgba(246, 176, 66, 0.5);
+}
+
+.gradient-45deg-xiketic-lemon {
+  background: #10051D;
+  background: -webkit-linear-gradient(45deg, #10051D 15%, #F9ED4E 85%);
+  background: linear-gradient(45deg, #10051D 10%, #F9ED4E 90%);
+}
+.gradient-45deg-xiketic-lemon.gradient-shadow {
+  box-shadow: 0 6px 20px 0 rgba(249, 237, 78, 0.5);
+}
+
+.gradient-45deg-purple-orange {
+  background: #533549;
+  background: -webkit-linear-gradient(45deg, #533549 15%, #F6B042 85%);
+  background: linear-gradient(45deg, #533549 10%, #F6B042 90%);
+}
+.gradient-45deg-purple-orange.gradient-shadow {
+  box-shadow: 0 6px 20px 0 rgba(246, 176, 66, 0.5);
+}
+
+.gradient-45deg-purple-lemon {
+  background: #533549;
+  background: -webkit-linear-gradient(45deg, #533549 15%, #F9ED4E 85%);
+  background: linear-gradient(45deg, #533549 10%, #F9ED4E 90%);
+}
+.gradient-45deg-purple-lemon.gradient-shadow {
+  box-shadow: 0 6px 20px 0 rgba(249, 237, 78, 0.5);
+}
+
+.gradient-45deg-orange-lemon {
+  background: #F6B042;
+  background: -webkit-linear-gradient(45deg, #F6B042 15%, #F9ED4E 85%);
+  background: linear-gradient(45deg, #F6B042 10%, #F9ED4E 90%);
+}
+.gradient-45deg-orange-lemon.gradient-shadow {
+  box-shadow: 0 6px 20px 0 rgba(249, 237, 78, 0.5);
+}
+
+.gradient-45deg-purple-orange-lemon {
+  background: #533549;
+  background: -webkit-linear-gradient(45deg, #533549 15%, #F6B042 30%, #F9ED4E 55%);
+  background: linear-gradient(25deg, #533549 15%, #F6B042 45%, #F9ED4E 95%);
+}
+/*.gradient-45deg-purple-orange-lemon.gradient-shadow {
+  box-shadow: 0 6px 20px 0 rgba(249, 237, 78, 0.5);
+}*/
+
+
+.overlay {
+  position: absolute; 
+  bottom: 0; 
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  width: 100%;
+  transition: .5s ease;
+  opacity:1;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+  height: 100%;
+  z-index: 1000;
+}

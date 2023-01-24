@@ -1,0 +1,36 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="flex">
+    <div class="flex-grow">
+      <h1 class="text-sky-700">Listing Wallets</h1>
+    </div>
+    <div class="flex flex-row-reverse">
+      <%= live_patch "New Wallet", to: Routes.wallet_index_path(@socket, :new), class: "button-small" %>
+    </div>
+  </section>
+  
+  <%= if @live_action in [:new, :edit] do %>
+    <.modal return_to={Routes.wallet_index_path(@socket, :index)}>
+      <.live_component
+        module={SatoriWeb.WalletLive.FormComponent}
+        id={@wallet.id || :new}
+        title={@page_title}
+        action={@live_action}
+        wallet={@wallet}
+        return_to={Routes.wallet_index_path(@socket, :index)}
+      />
+    </.modal>
+  <% end %>
+
+  <ul role="list"  class="mt-6 space-y-3">
+    <%= for wallet <- @wallets do %>
+      <.live_component
+      module={SatoriWeb.WalletLive.Components.WalletComponent}
+      wallet={wallet}
+      id={wallet.id}
+      live_action={@live_action}
+      page_title={@page_title}
+      return_to={Routes.wallet_index_path(@socket, :index)}
+      />
+      <% end %>
+  </ul>
+</div>

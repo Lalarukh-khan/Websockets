@@ -1,0 +1,10 @@
+-3. add pins table to the schema diagram 
+https://lucid.app/lucidchart/90f17061-d9d4-4f28-9ec5-409a012b3856/edit?existing=1&token=db0208d921bdef78d77f4ea1c9117a7afb773cda-eml%3Djordan.kay%2540gmail.com%26ts%3D1654988855%26uid%3D102778988&docId=90f17061-d9d4-4f28-9ec5-409a012b3856&shared=true&invitationId=inv_13a59768-0065-465e-bab7-05713e78eb4a&page=0_0#
+-2. read up on graphql subscriptions and dataloaders
+https://hexdocs.pm/absinthe/subscriptions.html
+-1. symantic sugar on schemas for fields
+0. ipfs stuff on client side and server side
+1. get dataloader (for schema & resolver) working for graphql
+2. connect verify wallet signature to graphql session creation
+3. make client remember graphql token and use it correctly
+4. make endpoints for create stream, publish, subscribe. 

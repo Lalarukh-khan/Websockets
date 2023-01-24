@@ -1,0 +1,36 @@
+<h1>Show Subscriber</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.subscriber_show_path(@socket, :show, @subscriber)}>
+    <.live_component
+      module={SatoriWeb.SubscriberLive.FormComponent}
+      id={@subscriber.id}
+      title={@page_title}
+      action={@live_action}
+      subscriber={@subscriber}
+      return_to={Routes.subscriber_show_path(@socket, :show, @subscriber)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Stream:</strong>
+    <%= @subscriber.stream_id %>
+  </li>
+
+  <li>
+    <strong>Device:</strong>
+    <%= @subscriber.device_id %>
+  </li>
+
+  <li>
+    <strong>Target:</strong>
+    <%= @subscriber.target_id %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.subscriber_show_path(@socket, :edit, @subscriber), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.subscriber_index_path(@socket, :index) %></span>

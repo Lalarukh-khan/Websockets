@@ -1,0 +1,37 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="flex">
+    <div class="flex-grow">
+      <h1 class="text-sky-700">Listing Observations</h1>
+    </div>
+    <div class="flex flex-row-reverse">
+      <%= live_patch "New Observation", to: Routes.observation_index_path(@socket, :new), class: "button-small" %>
+    </div>
+  </section>
+<h1>Listing Observations</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.observation_index_path(@socket, :index)}>
+    <.live_component
+      module={SatoriWeb.ObservationLive.FormComponent}
+      id={@observation.id || :new}
+      title={@page_title}
+      action={@live_action}
+      observation={@observation}
+      return_to={Routes.observation_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+  <ul role="list"  class="mt-6 space-y-3">
+    <%= for observation <- @observations do %>
+      <.live_component
+      module={SatoriWeb.ObservationLive.Components.ObservationComponent}
+      observation={observation}
+      id={observation.id}
+      live_action={@live_action}
+      page_title={@page_title}
+      return_to={Routes.observation_index_path(@socket, :index)}
+      />
+      <% end %>
+  </ul>
+</div>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% block head %}
+  <head>
+    <!--meta http-equiv="Content-Type" content="text/html; charset=UTF-8"-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@300&family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
+    
+    <!-- https://material.io/resources/icons/?style=round -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Round"rel="stylesheet">
+    <!-- https://material.io/resources/icons/?style=baseline -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons"rel="stylesheet">
+
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+    <script src="{{ url_for('static', filename='js/jquery3.3.1.min.js') }}s"></script>
+
+    <!--<script src="https://kit.fontawesome.com/2304e4818b.js"></script> this one might need to come from fontawesome... but we'll try to download it-->
+    <script src="{{ url_for('static', filename='js/kit.fontawesome.2304e4818b.js') }}"></script>
+
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+
+    <!-- Favicons-->
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon/favicon.ico') }}" sizes="32x32">
+    
+    <!-- needed for modal -->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css') }}"> -->
+    
+    <!-- CORE CSS-->
+    <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/materialize_style.css') }}" type="text/css" rel="stylesheet">
+    <!-- Custome CSS-->
+    <link href="{{ url_for('static', filename='css/custom.css') }}" type="text/css" rel="stylesheet">
+    <!-- HandsOnTable CSS and JS added to the dataset.py file instead -->
+    <script src="{{ url_for('static', filename='js/handsontable.full.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/materialize1.0.0.min.js') }}"></script>
+    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+
+
+    {% block inner_head %}
+    {% block preamble %}{% endblock %}
+    {% block resources %}
+        {% block css_resources %}
+        {{ bokeh_css | indent(8) if bokeh_css }}
+        {% endblock %}
+        {% block js_resources %}
+        {{ bokeh_js | indent(8) if bokeh_js }}
+        {% endblock %}
+    {% endblock %}
+    {% block postamble %}{% endblock %}
+    {% endblock %}
+  </head>
+  {% endblock %}
+  <body>
+    <div id="loader-wrapper">
+      <div id="loader"></div>
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+    </div>
+    {% include 'header.html' %}
+    <div id="main">
+      <div class="wrapper">
+        <!--
+          Side nav not needed right now
+          { % include 'nav-side.html' % }-->
+        <div>
+          <script>
+            function delete_this(flash){
+              $(flash).parent().remove()
+            }
+          </script>
+          <article class="flashes">
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <ul>
+                  {% for message in messages %}
+                    <li class="card" onclick=delete_this(this)>
+                      <a title="remove"><p style="margin: 15px; color: #868A8E; cursor: pointer;">
+                        {{message}}
+                        <i class="small material-icons right">close</i>
+                      </p></a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+          </article>
+        </div>
+        <section id="content">
+          <div class="container" style="position: relative;display: block;top: -15px">
+
+            {% block content %}
+            {% endblock %}
+
+          </div>
+        </section>
+      </div>
+    </div>
+    <footer class="page-footer footer-fixed gradient-45deg-xiketic-purple">
+        <div class="footer-copyright">
+          <div class="container">
+            <span>Satori
+              <a class="grey-text text-lighten-2" href="http://satorinet.io" target="_blank"> </a>
+              Network</span>
+            <span class="right">
+              Version
+              <a class="grey-text text-lighten-2" href="http://satorinet.io">
+                <script type="text/javascript">
+                  document.write(new Date().getFullYear());
+                </script>
+                .1
+              </a>
+            </span>
+          </div>
+        </div>
+    </footer>
+    <!-- ================================================
+    Scripts
+    ================================================ -->
+    <!-- jQuery Library -->
+    <script type="text/javascript" src="{{ url_for('static', filename='vendors/jquery-3.2.1.min.js') }}"></script>
+    <!--materialize js-->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
+    <!--scrollbar-->
+    <script type="text/javascript" src="{{ url_for('static', filename='vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+    <!--custom-script.js - Add your own theme custom JS-->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/custom-script.js') }}"></script>
+
+  </body>
+</html>

@@ -1,0 +1,1 @@
+this was an attempt to run the server and the database in a docker image, it did not work well. It was motivated because getting it to work on windows is sometimes a pain, but that was eventually solved so this docker stuff isn't used currenlty.

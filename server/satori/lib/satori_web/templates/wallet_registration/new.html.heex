@@ -1,0 +1,76 @@
+<div class="form-container">
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <img class="form-icon" src="/images/satori.svg" alt="Satori Logo">
+      <h2 class="account-title">
+        Create a new account with wallet
+      </h2>
+      <p class="account-subtitle">
+        Or <%= link "sign into an existing wallet", to: Routes.wallet_session_path(@conn, :create), class: "hyperlink" %>
+      </p>
+    </div>
+
+    <.form let={f} for={@changeset} action={Routes.wallet_registration_path(@conn, :create)} class="mt-8 space-y-6">
+      <%= if @changeset.action do %>
+        <div class="form-error">
+          <p>Something went wrong. Please correct the errors below and try again.</p>
+        </div>
+      <% end %>
+
+      <input type="hidden" name="remember" value="true">
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <%= label f, :message, class: "sr-only" %>
+          <%= text_input f, :message, required: true, class: "form-field", placeholder: "Message" %>
+          <%= error_tag f, :message %>
+        </div>
+
+        <div>
+          <%= label f, :signature, class: "sr-only" %>
+          <%= text_input f, :signature, required: true, class: "form-field", placeholder: "Signature" %>
+          <%= error_tag f, :signature %>
+        </div>
+        
+        <div>
+          <%= label f, :public_key, class: "sr-only" %>
+          <%= text_input f, :public_key, required: true, class: "form-field", placeholder: "Public Key" %>
+          <%= error_tag f, :public_key %>
+        </div>
+
+        <div>
+          <%= label f, :address, class: "sr-only" %>
+          <%= text_input f, :address, required: true, class: "form-field", placeholder: "Address" %>
+          <%= error_tag f, :address %>
+        </div>
+
+        <%# <div>
+          <%= label f, :password, class: "sr-only" %>
+          <%# <%= password_input f, :password, required: true, class: "form-field form-field-bottom", placeholder: "Password" %>
+          <%# <%= error_tag f, :password %> 
+        <%# </div> %>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <%= checkbox f, :remember_me, class: "form-checkbox" %>
+          <%= label f, :remember_me, "Remember me", class: "form-checkbox-label" %>
+        </div>
+
+        <div class="text-sm">
+          <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "hyperlink" %>
+        </div>
+      </div>
+
+      <div>
+        <%= submit class: "group form-button" do %>
+          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <svg class="form-button-image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM256 368C269.3 368 280 357.3 280 344V280H344C357.3 280 368 269.3 368 256C368 242.7 357.3 232 344 232H280V168C280 154.7 269.3 144 256 144C242.7 144 232 154.7 232 168V232H168C154.7 232 144 242.7 144 256C144 269.3 154.7 280 168 280H232V344C232 357.3 242.7 368 256 368z"/>
+            </svg>
+          </span>
+          Create account with wallet
+        <% end %>
+      </div>
+    </.form>
+  </div>
+</div>

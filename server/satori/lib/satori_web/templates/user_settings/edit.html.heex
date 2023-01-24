@@ -1,0 +1,126 @@
+<div class="bg-sky-700">
+  <h1 class="account-title"><%= "#{@current_user.first_name} #{@current_user.last_name}'s Profile" %></h1>
+  <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div>
+      <div class="md:grid md:grid-cols-3 md:gap-6">
+        <div class="md:col-span-1">
+          <div class="px-4 sm:px-0">
+            <h3 class="form-profile-side-title">Change your email address</h3>
+            <p class="form-profile-side-text">
+              Enter your current password and your new email address.
+            </p>
+          </div>
+        </div>
+        <div class="mt-5 md:mt-0 md:col-span-2">
+          <.form let={f} for={@email_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_email">
+            <%= if @email_changeset.action do %>
+              <div class="form-error">
+                <p>Something went wrong. Please check the errors below and try again.</p>
+              </div>
+            <% end %>
+
+            <%= hidden_input f, :action, name: "action", value: "update_email" %>
+            <div class="shadow sm:rounded-md sm:overflow-hidden">
+              <div class="form-profile-panel">
+                <div class="grid grid-cols-3 gap-6">
+                  <div class="col-span-6 sm:col-span-4">
+                    <%= label f, :email, class: "block text-sm font-medium text-orange-200" %>
+                    <div class="mt-1 flex rounded-md shadow-sm">
+                      <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-sky-200 bg-sky-600 text-orange-300 text-sm">
+                        @
+                      </span>
+                      <%= email_input f, :email, required: true, class: "bg-sky-500 text-orange-200 focus:ring-red-500 focus:border-red-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-sky-200", placeholder: "Email address" %>
+                    </div>
+                    <%= error_tag f, :email %>
+                  </div>
+
+                  <div class="col-span-6 sm:col-span-4">
+                    <%= label f, :current_password, for: "current_password_for_password", class: "form-profile-label" %>
+                    <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email", class: "form-field form-field-single" %>
+                    <%= error_tag f, :current_password %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="px-4 py-3 bg-sky-600 text-right sm:px-6">
+                <%= submit class: "group form-button" do %>
+                <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                  <svg class="form-button-image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path fill="evenodd" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
+                  </svg>
+                </span>
+                Update email address
+                <% end %>
+              </div>
+            </div>
+          </.form>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden sm:block" aria-hidden="true">
+      <div class="py-5">
+        <div class="border-t border-sky-400"></div>
+      </div>
+    </div>
+
+    <div class="mt-10 sm:mt-0">
+      <div class="md:grid md:grid-cols-3 md:gap-6">
+        <div class="md:col-span-1">
+          <div class="px-4 sm:px-0">
+            <h3 class="form-profile-side-title">Change your password</h3>
+            <p class="form-profile-side-text">
+              Enter your current password, and then enter and confirm your new password.
+            </p>
+          </div>
+        </div>
+        <div class="mt-5 md:mt-0 md:col-span-2">
+          <.form let={f} for={@password_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_password">
+            <%= if @password_changeset.action do %>
+              <div class="form-error">
+                <p>Something went wrong. Please check the errors below and try again.</p>
+              </div>
+            <% end %>
+
+            <%= hidden_input f, :action, name: "action", value: "update_password" %>
+            <div class="shadow overflow-hidden sm:rounded-md">
+              <div class="form-profile-panel">
+                <div class="grid grid-cols-3 gap-6">
+                  <div class="col-span-6 sm:col-span-4">
+                    <%= label f, :current_password, for: "current_password_for_password", class: "form-profile-label" %>
+                    <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_password", class: "form-field form-field-single" %>
+                    <%= error_tag f, :current_password %>
+                  </div>
+
+
+                  <div class="col-span-6 sm:col-span-4">
+                    <%= label f, :password, "New password", class: "form-profile-label" %>
+                    <%= password_input f, :password, required: true, class: "form-field form-field-single" %>
+                    <%= error_tag f, :password %>
+                  </div>
+
+                  <div class="col-span-6 sm:col-span-4">
+                    <%= label f, :password_confirmation, "Confirm new password", class: "form-profile-label" %>
+                    <%= password_input f, :password_confirmation, required: true, class: "form-field form-field-single" %>
+                    <%= error_tag f, :password_confirmation %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="px-4 py-3 bg-sky-600 text-right sm:px-6">
+                <%= submit class: "group form-button" do %>
+                <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                  <svg class="form-button-image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                Update password
+                <% end %>
+              </div>
+            </div>
+          </.form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

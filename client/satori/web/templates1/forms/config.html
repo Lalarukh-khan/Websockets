@@ -1,0 +1,39 @@
+<!-- SETUP WALLET AND SECURITY -->
+<!-- EXAMPLE REPLACE WITH BETTER TEMPLATE -->
+
+{% extends "basic.html" %}
+
+{% block content %}
+
+  <div class="">
+    <h3>Configuration</h3>
+  </div>
+  <br />
+  <br />
+  <center><h4>Edit Configuration Details</h4></center>
+  <form action="" method="post" novalidate>
+    {{ edit_configuration.hidden_tag() }}
+    <p>
+      {{ edit_configuration.flaskPort.label }}<br>
+      {{ edit_configuration.flaskPort(size=32) }}
+    </p>
+    <p>
+      {{ edit_configuration.nodejsPort.label }}<br>
+      {{ edit_configuration.nodejsPort(size=32) }}
+    </p>
+    <p>
+      {{ edit_configuration.dataPath.label }}<br>
+      {{ edit_configuration.dataPath(size=32) }}
+    </p>
+    <p>
+      {{ edit_configuration.modelPath.label }}<br>
+      {{ edit_configuration.modelPath(size=32) }}
+    </p>
+    <p>
+      {{ edit_configuration.defaultSource.label }}<br>
+      {{ edit_configuration.defaultSource(size=32) }}
+    </p>
+    {{ edit_configuration.submit() }}
+  </form>
+
+{% endblock %}

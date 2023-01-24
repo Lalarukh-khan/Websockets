@@ -1,0 +1,43 @@
+<!-- EXAMPLE REPLACE WITH BETTER TEMPLATE -->
+<body > 
+  <header id="header" class="page-topbar">
+    <div class="navbar-fixed">
+      <nav class="navbar-color gradient-45deg-purple-orange-lemon">
+        <div class="nav-wrapper">
+          <ul class="left">
+            <li>
+              <h1 class="logo-wrapper">
+                <a href="{{ url_for('home') }}" class="brand-logo darken-1">
+                  <span class="logo-text">Sat<img src="{{ url_for('static', filename='img/ensodarkclear.png') }}" width="17.5" height="17.5" style='margin-right: 0.2rem;'>ri</span>
+                </a>
+              </h1>
+            </li>
+          </ul>
+          <ul class="right">
+            <li title='Full Screen' class='hide-on-med-and-down'>
+              <a href="javascript:void(0);" class="waves-effect waves-block waves-light toggle-fullscreen">
+                <i class="material-icons">settings_overscan</i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  
+  <style>
+    /* 
+    <div class='navbar-fadeout'>
+    </div>
+    I thought soft edges would be a goood idea, but it doesn't look good
+    the gradient has hard edges, so I put everything back.
+    */
+    .navbar-fadeout {
+      position: fixed;
+      top: 64px;
+      width: 100%;
+      height: 32px;
+      z-index: 998;
+      background-image: -webkit-gradient(easeout, left bottom, left top, from(rgba(255, 255, 255, 1)), to(rgba(0, 0, 0, 0)));
+    }
+  </style>

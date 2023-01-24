@@ -1,0 +1,79 @@
+@media only screen and (max-width: 600px) {
+    .resize-on-small-and-down {
+        font-size: 100px !important;
+    }
+}
+@media only screen and (max-width: 840px) {
+    .resize-on-med-and-down {
+        width: -webkit-fill-available;
+        height: auto;
+    }
+}
+
+iframe {
+    /*
+    #width: 100vw;
+    #height: 100vh;
+    */
+    pointer-events: none;
+}
+.logoFont {
+    font-family: 'Averia Sans Libre', cursive;
+    }
+.textFont {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    color: rgba(0, 0, 0, 0.8);
+    }
+.textFontButton {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 25px;
+    }
+button {
+    all: unset;
+    cursor: pointer;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+/*
+button:focus {
+    outline: orange 5px auto;
+    text-decoration: underline;
+}
+*/
+a {
+    all: unset;
+}
+
+
+.fade-in {
+    animation: fadeIn ease 3s;
+    -webkit-animation: fadeIn ease 3s;
+    -moz-animation: fadeIn ease 3s;
+    -o-animation: fadeIn ease 3s;
+    -ms-animation: fadeIn ease 3s;
+}
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}

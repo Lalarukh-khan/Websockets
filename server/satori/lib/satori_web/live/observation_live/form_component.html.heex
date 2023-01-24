@@ -1,0 +1,32 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="observation-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :stream_id %>
+    <%= number_input f, :stream_id %>
+    <%= error_tag f, :stream_id %>
+  
+    <%= label f, :wallet_id %>
+    <%= number_input f, :wallet_id %>
+    <%= error_tag f, :wallet_id %>
+  
+    <%= label f, :target_id %>
+    <%= number_input f, :target_id %>
+    <%= error_tag f, :target_id %>
+  
+    <%= label f, :value %>
+    <%= text_input f, :value %>
+    <%= error_tag f, :value %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

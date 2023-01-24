@@ -1,0 +1,56 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer components {
+  h1 {@apply text-3xl font-extrabold text-orange-100;}
+  .account-subtitle {@apply mt-2 text-center text-sm text-orange-100;}
+  .account-title {@apply text-center text-3xl font-extrabold text-sky-500;}
+  .button-card {@apply w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-400 md:py-4 md:text-lg md:px-10;}
+  .button-card-inverted {@apply w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-sky-700 bg-orange-100 hover:bg-orange-200 md:py-4 md:text-lg md:px-10;}
+  .button-line-form {@apply w-full flex items-center justify-center py-1.5 px-4 border border-orange-200 text-base font-medium rounded text-orange-200 bg-transparent hover:bg-sky-500;}
+  .button-main {@apply w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-sky-500 hover:bg-sky-300 md:py-4 md:text-lg md:px-10;}
+  .button-menu {@apply relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-sky-400 hover:bg-sky-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-sky-500;}
+  .button-menu-inverted {@apply relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white border border-sky-400 bg-sky-700 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-sky-500;}
+  .button-small svg {@apply -ml-2 mr-2 h-4 w-4 text-sky-300;}
+  .button-small {@apply w-full flex items-center justify-center py-1 px-4 border border-transparent text-base font-medium rounded text-white bg-sky-600 hover:bg-sky-500;}
+  .button-small-inverted svg {@apply -ml-2 mr-2 h-4 w-4 text-orange-300;}
+  .button-small-inverted {@apply w-full flex items-center justify-center py-1 px-4 border border-orange-200 text-base font-medium rounded text-orange-200 bg-transparent hover:bg-sky-500;}
+  .form-button {@apply relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-sky-500 hover:bg-sky-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500;}
+  .form-button-image {@apply h-5 w-5 fill-sky-300 group-hover:fill-sky-200;}
+  .form-checkbox {@apply h-4 w-4 bg-sky-500 text-sky-400 focus:ring-sky-500 border-sky-300 rounded;}
+  .form-checkbox-label {@apply ml-2 block text-sm text-sky-500 font-medium;}
+  .form-container {@apply bg-gray-100 min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8;}
+  .form-error {@apply py-2 px-4 bg-orange-200 text-orange-700 rounded-md border border-orange-700;}
+  .form-error-feedback {@apply text-orange-300 ml-4;}
+  .form-field {@apply appearance-none rounded-none relative block w-full px-3 py-2 border bg-white border-sky-300 placeholder-gray-400 text-sky-700 focus:outline-none focus:ring-orange-500 focus:border-orange-300 focus:z-10 sm:text-sm;}
+  .form-field-bottom {@apply rounded-b-md;}
+  .form-field-error {@apply mb-4 px-2 inline-flex text-xs leading-5 font-semibold rounded-full border border-orange-300 bg-orange-100 text-orange-700;}
+  .form-field-single {@apply rounded-md;}
+  .form-field-top {@apply rounded-t-md;}
+  .form-icon {@apply mx-auto h-24 w-auto;}
+  .form-profile-label {@apply block text-sm font-medium text-orange-200;}
+  .form-profile-panel {@apply px-4 py-5 bg-sky-600 space-y-6 sm:p-6;}
+  .form-profile-side-text {@apply mt-1 text-sm text-orange-300;}
+  .form-profile-side-title {@apply text-lg font-medium leading-6 text-orange-100;}
+  .form-title {@apply mt-6 text-center text-3xl font-extrabold text-orange-200;}
+  .header-link {@apply text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium;}
+  .header-link-active {@apply border border-sky-400 hover:border-orange-300 text-white px-3 py-2 rounded-md text-sm font-medium;}
+  .hero-text {@apply mt-3 text-base text-gray-600 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl;}
+  .hyperlink {@apply font-medium text-sky-500 hover:text-orange-500;}
+  .list-item {@apply bg-white shadow overflow-hidden px-4 py-4 sm:px-6 sm:rounded-md;}
+  .list-links {@apply inline-flex items-center shadow-sm px-2.5 py-0.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50;}
+  .menu-item {@apply text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium;}
+  .parchement {@apply bg-[url('/images/paper.png')];}
+  .poll-entries li {@apply text-lg;}
+  .poll-entries {@apply ml-8 mt-4 text-orange-100 text-sm;}
+  .poll-info p {@apply text-sm text-sky-100 truncate;}
+  .poll-info {@apply mt-8;}
+  .poll-link {@apply text-orange-400 hover:text-orange-300 hover:underline;}
+  .poll-title {@apply text-2xl font-medium;}
+  .price-card {@apply relative p-8 border-2 border-orange-500 rounded-2xl shadow-sm flex flex-col;}
+  .price-card-feature {@apply flex-shrink-0 w-6 h-6 text-orange-500;}
+  .profile-dropdown-menu-item {@apply block px-4 py-2 text-sm text-gray-700 hover:text-orange-700 hover:bg-sky-100;}
+  .survey-option-checkbox {@apply bg-[url('/images/unchecked.svg')];}
+  .survey-option:hover .survey-option-checkbox {@apply bg-[url('/images/checked.svg')] !important;}
+}

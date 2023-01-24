@@ -1,0 +1,46 @@
+<h1>Show Pin</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.pin_show_path(@socket, :show, @pin)}>
+    <.live_component
+      module={SatoriWeb.PinLive.FormComponent}
+      id={@pin.id}
+      title={@page_title}
+      action={@live_action}
+      pin={@pin}
+      return_to={Routes.pin_show_path(@socket, :show, @pin)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Wallet:</strong>
+    <%= @pin.wallet_id %>
+  </li>
+
+  <li>
+    <strong>Stream:</strong>
+    <%= @pin.stream_id %>
+  </li>
+
+  <li>
+    <strong>Target:</strong>
+    <%= @pin.target_id %>
+  </li>
+
+  <li>
+    <strong>Ipns:</strong>
+    <%= @pin.ipns %>
+  </li>
+
+  <li>
+    <strong>Ipfs:</strong>
+    <%= @pin.ipfs %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.pin_show_path(@socket, :edit, @pin), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.pin_index_path(@socket, :index) %></span>

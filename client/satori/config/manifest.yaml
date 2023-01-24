@@ -1,0 +1,46 @@
+? !!python/tuple
+- streamrSpoof
+- simpleEURCleanedC
+- Close
+: purged: []
+  targets:
+  - - !!python/tuple
+      - streamrSpoof
+      - simpleEURCleanedC
+      - Close
+  - - !!python/tuple
+      - streamrSpoof
+      - simpleEURCleanedHL
+      - High
+    - !!python/tuple
+      - streamrSpoof
+      - simpleEURCleanedHL
+      - Low
+? !!python/tuple
+- streamrSpoof
+- simpleEURCleanedHL
+- High
+: purged: []
+  targets:
+  - - !!python/tuple
+      - streamrSpoof
+      - simpleEURCleanedHL
+      - High
+    - !!python/tuple
+      - streamrSpoof
+      - simpleEURCleanedHL
+      - Low
+? !!python/tuple
+- streamrSpoof
+- simpleEURCleanedHL
+- Low
+: purged: []
+  targets:
+  - - !!python/tuple
+      - streamrSpoof
+      - simpleEURCleanedHL
+      - Low
+    - !!python/tuple
+      - streamrSpoof
+      - simpleEURCleanedHL
+      - High

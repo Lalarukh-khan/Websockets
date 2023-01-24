@@ -1,0 +1,51 @@
+<h1>Show Device</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.device_show_path(@socket, :show, @device)}>
+    <.live_component
+      module={SatoriWeb.DeviceLive.FormComponent}
+      id={@device.id}
+      title={@page_title}
+      action={@live_action}
+      device={@device}
+      return_to={Routes.device_show_path(@socket, :show, @device)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @device.name %>
+  </li>
+
+  <li>
+    <strong>Cpu:</strong>
+    <%= @device.cpu %>
+  </li>
+
+  <li>
+    <strong>Disk:</strong>
+    <%= @device.disk %>
+  </li>
+
+  <li>
+    <strong>Bandwidth:</strong>
+    <%= @device.bandwidth %>
+  </li>
+
+  <li>
+    <strong>Ram:</strong>
+    <%= @device.ram %>
+  </li>
+
+  <li>
+    <strong>Wallet:</strong>
+    <%= @device.wallet_id %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.device_show_path(@socket, :edit, @device), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.device_index_path(@socket, :index) %></span>

@@ -1,0 +1,36 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="flex">
+    <div class="flex-grow">
+      <h1 class="text-sky-700">Listing Streams</h1>
+    </div>
+    <div class="flex flex-row-reverse">
+      <%= live_patch "New Stream", to: Routes.stream_index_path(@socket, :new), class: "button-small" %>
+    </div>
+  </section>
+  
+  <%= if @live_action in [:new, :edit] do %>
+    <.modal return_to={Routes.stream_index_path(@socket, :index)}>
+      <.live_component
+        module={SatoriWeb.StreamLive.FormComponent}
+        id={@stream.id || :new}
+        title={@page_title}
+        action={@live_action}
+        stream={@stream}
+        return_to={Routes.stream_index_path(@socket, :index)}
+      />
+    </.modal>
+  <% end %>
+
+  <ul role="list"  class="mt-6 space-y-3">
+    <%= for stream <- @streams do %>
+      <.live_component
+      module={SatoriWeb.StreamLive.Components.StreamComponent}
+      stream={stream}
+      id={stream.id}
+      live_action={@live_action}
+      page_title={@page_title}
+      return_to={Routes.stream_index_path(@socket, :index)}
+      />
+      <% end %>
+  </ul>
+</div>

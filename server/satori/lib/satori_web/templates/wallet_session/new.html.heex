@@ -1,0 +1,65 @@
+<div class="form-container">
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <img class="form-icon" src="/images/satori.svg" alt="Satori Logo">
+      <h2 class="account-title">
+        Sign in to your account
+      </h2>
+      <p class="account-subtitle">
+        Or <%= link "register for a new wallet", to: Routes.wallet_registration_path(@conn, :new), class: "hyperlink" %>
+      </p>
+    </div>
+
+    <.form let={f} for={@conn} action={Routes.wallet_session_path(@conn, :create)}, as={:wallet} class="mt-8 space-y-6">
+      <%= if @error_message do %>
+        <div class="form-error">
+          <p><%= @error_message %></p>
+        </div>
+      <% end %>
+
+      <input type="hidden" name="remember" value="true">
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <%= label f, :message, class: "sr-only" %>
+          <%= text_input f, :message, required: true, class: "form-field", placeholder: "Message" %>
+          <%= error_tag f, :message %>
+        </div>
+
+        <div>
+          <%= label f, :signature, class: "sr-only" %>
+          <%= text_input f, :signature, required: true, class: "form-field", placeholder: "Signature" %>
+          <%= error_tag f, :signature %>
+        </div>
+
+        <div>
+          <%= label f, :public_key, class: "sr-only" %>
+          <%= text_input f, :public_key, required: true, class: "form-field", placeholder: "Public Key" %>
+          <%= error_tag f, :public_key %>
+        </div>
+
+      </div>
+
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <%= checkbox f, :remember_me, class: "form-checkbox" %>
+          <%= label f, :remember_me, "Remember me", class: "form-checkbox-label" %>
+        </div>
+
+        <div class="text-sm">
+          <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: "hyperlink" %>
+        </div>
+      </div>
+
+      <div>
+        <%= submit class: "group form-button" do %>
+          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <svg class="form-button-image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+            </svg>
+          </span>
+          Sign in
+        <% end %>
+      </div>
+    </.form>
+  </div>
+</div>

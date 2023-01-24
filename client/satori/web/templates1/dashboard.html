@@ -1,0 +1,126 @@
+<!-- EXAMPLE REPLACE WITH BETTER TEMPLATE -->
+
+{% extends "basic.html" %}
+
+{% block content %}
+<div id="work-collections">
+  <div class="row">
+    
+    <div class="col s12 m6 l6">
+      <ul id="projects-collection" class="collection z-depth-1">
+        <div class="overlay">Coming Soon</div>
+        <li class="collection-item avatar">
+          <div class="row">
+            <div class="col s9">
+              <i class="material-icons xiketic circle">account_balance_wallet</i>
+              <h6 class="collection-header m-0" style="margin-top: 12px !important">Wallet</h6>
+            </div>
+            <div class="col s3">
+              <div class="collections-content right"  style="margin-left: 12px !important; margin-top: .9rem !important;">sats</div>
+              <h6 class="collection-balance m-0 right">96</h6>
+            </div>
+          </div>
+        </li>
+        {% for name, details in {'test':{'in':'north_east','transaction_amount':'4', 'from_address':'S13f58e3s4e3sskxlxvef54se3531fexvbf4'},'test2':{'transaction_amount':'100', 'from_address':'S13f58e3s4e3sskxlxvef54se3531fexvbf4', 'in':'south_west'}}.items() %}
+        <li class="collection-item" id="dash_fav_{{name}}">
+          <div class="row">
+            <div class="col s9">
+              <p class="collections-title">{{ details['transaction_amount'] }}</p>
+              <p class="collections-content">{{ details['from_address'] }}</p>
+            </div>
+            <div class="col s3">
+                <i class="material-icons right">{{ details['in'] }}</i>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col s12 m6 l6">
+      <ul id="projects-collection" class="collection z-depth-1">
+        <li class="collection-item avatar">
+          <div class="row">
+            <div class="col s9">
+              <i class="material-icons xiketic circle">settings</i>
+              <h6 class="collection-header m-0" style="margin-top: 12px !important">Configuration</h6>
+            </div>
+            <div class="col s3">
+              <div class="collections-content right"  style="margin-left: 12px !important; margin-top: .9rem !important;">
+                <a href="{{ url_for('edit_configuration') }}"><i class="material-icons">edit</i></a>
+              </div>
+            </div>
+          </div>
+        </li>
+        {% for key, value in configOverrides.items() %}
+        <li class="collection-item" id="dash_fav_name">
+          <div class="row">
+            <div class="col s6">
+              <p class="collections-content">{{ key }}</p>
+            </div>
+            <div class="col s6">
+              <p class="collections-title" style="text-align: end">{{ value }}</p>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 m12 l12">
+      <ul id="projects-collection" class="collection z-depth-1">
+        <li class="collection-item avatar">
+          <i class="material-icons xiketic circle">lightbulb</i> <!-- category network-intelligence lightbulb self-improvement -->
+          <h6 class="collection-header m-0" style="margin-top: 12px !important">Predictions</h6>
+        </li>
+        <table class="highlight responsive-table hide-on-med-and-down">
+          <thead>
+            <caption></caption>
+            <tr>
+              <th width="10%">Source</th>
+              <th width="20%">Stream</th>
+              <th width="10%">Target</th>
+              <th width="15%">Current Value</th>
+              <th width="15%">Current Prediction</th>
+              <th width="10%">Accuracy</th>
+              <th width="10%">Actions</th>
+              <th width="10%">Subscribers</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for streamOverview in streamsOverview %}
+            <tr>
+              <td>{{ streamOverview['source'] }}</td>
+              <td>{{ streamOverview['stream'] }}</td>
+              <td>{{ streamOverview['target'] }}</td>
+              <td>{{ streamOverview['value'] }}</td>
+              <td>{{ streamOverview['prediction'] }}</td>
+              <td>{{ streamOverview['accuracy'] }}</td>
+              <td>
+                <a class="waves-effect waves-light" href="/" title="Edit">
+                  <i class="material-icons">edit</i>
+                </a>
+                <a class="waves-effect waves-light" href="/" title="Delete">
+                  <i class="material-icons right">delete</i>
+                </a>
+              </td>
+              <td>{{ streamOverview['subscribers'] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      
+
+
+
+
+
+      </ul>
+    </div>
+  </div>
+</div>
+<!--work collections end-->
+
+
+{% endblock %}

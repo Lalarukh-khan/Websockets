@@ -1,0 +1,41 @@
+setuptools==56.0.0
+IPython==7.23.0
+matplotlib==3.4.1
+xgboost==1.5.1
+forex-python==1.8
+oauth2client==4.1.3
+pandas==1.3.4
+joblib==1.0.1
+#numpy==#1.19.5 # why was an old version listed here?
+numpy==1.23.0
+ppscore==1.2.0
+gspread==5.0.0
+seaborn==0.11.2
+scikit-learn==0.24.2
+sklearn==0.0
+pyarrow==6.0.1
+fastparquet==0.7.2
+reactivex==4.0.0b5
+waitress==2.1.1
+PyYAML==5.4.1
+Flask==2.1.1
+psutil==5.8.0
+WTForms==3.0.1
+flask_wtf==1.0.1
+python-ravencoinlib==0.2.2
+mnemonic==0.20
+click==8.1.2
+# grappler
+base58==2.1.1
+# needed for signing messages 
+Crypto==1.4.1
+# needed for Crypto
+Naked==0.1.31 
+# needed for Crypto 
+shellescape==3.8.1
+# needed for Satori server connection
+websockets==10.3
+
+## attempt to avoid error on macos about unsafe use of cryptolib
+#pyOpenSSL==22.0.0
+#cryptography==37.0.4
